@@ -21,7 +21,7 @@ NSIGHT_DEFEAULT_CONFIG = {
     "-t": "cuda,cudnn,cublas,nvtx",
     "-o": "'worker_process_%p'",
     "--cudabacktrace": "all",
-    "--stop-on-exit": "True",
+    "--stop-on-exit": "true",
 }
 
 
