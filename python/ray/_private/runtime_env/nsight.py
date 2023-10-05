@@ -20,7 +20,7 @@ default_logger = logging.getLogger(__name__)
 NSIGHT_DEFEAULT_CONFIG = {
     "-t": "cuda,cudnn,cublas,nvtx",
     "-o": "'worker_process_%p'",
-    "--cudabacktrace": "True",
+    "--cudabacktrace": "all",
     "--stop-on-exit": "True",
 }
 
