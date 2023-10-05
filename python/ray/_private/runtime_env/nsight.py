@@ -89,8 +89,8 @@ class NsightPlugin(RuntimeEnvPlugin):
         # replace this with better way to get logs dir
         session_dir, runtime_dir = os.path.split(resources_dir)
         self._logs_dir = os.path.join(session_dir + "/logs/nsight")
-        default_logger.info("Creating directory......")
         try_to_create_directory(self._logs_dir)
+        default_logger.info("Directory created")
 
     def delete_uri(
         self, uri: str, logger: Optional[logging.Logger] = default_logger
@@ -115,8 +115,11 @@ class NsightPlugin(RuntimeEnvPlugin):
         context: RuntimeEnvContext,
         logger: logging.Logger = default_logger,
     ) -> int:
+        default_logger.info("Creating nsight runtime env")
+
         nsight_config = runtime_env.get("nsight")
         if not nsight_config:
+            default_logger.info("Return 0")
             return 0
 
         if isinstance(nsight_config, str):
