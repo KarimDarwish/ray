@@ -153,7 +153,7 @@ class NsightPlugin(RuntimeEnvPlugin):
         default_logger.info("nsight: output file path %s", output_file_path)
 
         random = uuid.uuid4()
-        nsight_config["-o"] = f"/tmp/ray/worker_process_{random}.nsys-rep"
+        nsight_config["-o"] = f"/tmp/ray/worker_process_%p.nsys-rep"
 
         self.nsight_cmd = parse_nsight_config(nsight_config)
         return 0
