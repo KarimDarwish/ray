@@ -52,7 +52,7 @@ def check_nsight_script(nsight_config: Dict[str, str]) -> Tuple[bool, str]:
             text=True,
         )
         if result.returncode == 0:
-            subprocess.run(["rm", "empty.nsight-rep"])
+            subprocess.run(["rm", "-f", "empty.nsight-rep"])
             return True, None
         else:
             error_msg = (
@@ -144,10 +144,16 @@ class NsightPlugin(RuntimeEnvPlugin):
                 f"error message:\n {error_msg}"
             )
         # add set output path to logs dir
-        nsight_config["-o"] = f"{self._logs_dir}/" + nsight_config.get(
+
+        output = nsight_config.get(
             "-o", NSIGHT_DEFEAULT_CONFIG["-o"]
         )
 
+        default_logger.info(f"nsight: setting -o to {output}")
+        default_logger.info(f"nsight: logs dir: {self._logs_dir}")
+        default_logger.info(f"nsight: previous dir: {self._logs_dir}/{output}")
+
+        nsight_config["-o"] = output
         self.nsight_cmd = parse_nsight_config(nsight_config)
         return 0
 
