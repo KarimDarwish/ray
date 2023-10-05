@@ -145,15 +145,14 @@ class NsightPlugin(RuntimeEnvPlugin):
             )
         # add set output path to logs dir
 
-        output = nsight_config.get(
+        output_file_path = f"{self._logs_dir}/" + nsight_config.get(
             "-o", NSIGHT_DEFEAULT_CONFIG["-o"]
         )
 
-        default_logger.info(f"nsight: setting -o to {output}")
-        default_logger.info(f"nsight: logs dir: {self._logs_dir}")
-        default_logger.info(f"nsight: previous dir: {self._logs_dir}/{output}")
+        default_logger.info("nsight: output file path %s", output_file_path)
 
-        nsight_config["-o"] = output
+        nsight_config["-o"] = output_file_path
+
         self.nsight_cmd = parse_nsight_config(nsight_config)
         return 0
 
