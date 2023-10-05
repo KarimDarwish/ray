@@ -36,7 +36,11 @@ def check_nsight_script(nsight_config: Dict[str, str]) -> Tuple[bool, str]:
     """
 
     # use empty as nsight report test filename
+
+    default_logger.info(f"nsight: {nsight_config}")
+
     nsight_config_copy = copy.deepcopy(nsight_config)
+    default_logger.info(f"nsight: {nsight_config_copy}")
     nsight_config_copy["-o"] = "empty"
     nsight_cmd = parse_nsight_config(nsight_config_copy)
     try:
