@@ -51,6 +51,7 @@ class NsightPlugin(RuntimeEnvPlugin):
         # replace this with better way to get logs dir
         session_dir, runtime_dir = os.path.split(resources_dir)
         self._logs_dir = os.path.join(session_dir + "/logs/nsight")
+        raise ValueError("debug")
         default_logger.info("Creating directory......")
         try_to_create_directory(self._logs_dir)
 
