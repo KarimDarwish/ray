@@ -2,6 +2,7 @@ import os
 import logging
 import subprocess
 import copy
+import uuid
 from typing import Tuple, List, Dict, Optional
 
 from ray._private.runtime_env.context import RuntimeEnvContext
@@ -151,7 +152,8 @@ class NsightPlugin(RuntimeEnvPlugin):
 
         default_logger.info("nsight: output file path %s", output_file_path)
 
-        nsight_config["-o"] = output_file_path
+        random = uuid.uuid4()
+        nsight_config["-o"] = f"/tmp/ray/worker_process_{random}.nsys-rep"
 
         self.nsight_cmd = parse_nsight_config(nsight_config)
         return 0
