@@ -234,6 +234,9 @@ async def create_for_plugin_if_needed(
     logger: logging.Logger = default_logger,
 ):
     """Set up the environment using the plugin if not already set up and cached."""
+    logger.info(
+        f"nsight: Create for plugin if needed."
+    )
     if plugin.name not in runtime_env or runtime_env[plugin.name] is None:
         return
 

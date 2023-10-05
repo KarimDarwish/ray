@@ -293,6 +293,10 @@ class RuntimeEnvAgent:
             serialized_runtime_env,
             serialized_allocated_resource_instances,
         ):
+            default_logger.info(
+                f"nsight: _setup_runtime_env"
+            )
+
             allocated_resource: dict = json.loads(
                 serialized_allocated_resource_instances or "{}"
             )
