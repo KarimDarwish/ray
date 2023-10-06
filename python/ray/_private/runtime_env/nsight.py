@@ -21,6 +21,7 @@ default_logger = logging.getLogger(__name__)
 NSIGHT_DEFEAULT_CONFIG = {
     "-t": "cuda,cudnn,cublas,nvtx",
     "-o": "'worker_process_%p'",
+    "--duration": "160",
     "--cudabacktrace": "all",
     "--stop-on-exit": "true",
 }
@@ -152,7 +153,7 @@ class NsightPlugin(RuntimeEnvPlugin):
 
         default_logger.info("nsight: output file path %s", output_file_path)
 
-        nsight_config["-o"] = f"/tmp/ray/{nsight_config.get('-o', NSIGHT_DEFEAULT_CONFIG['-o'])}.nsys-rep"
+        nsight_config["-o"] = f"{nsight_config.get('-o', NSIGHT_DEFEAULT_CONFIG['-o'])}"
 
         self.nsight_cmd = parse_nsight_config(nsight_config)
         return 0
